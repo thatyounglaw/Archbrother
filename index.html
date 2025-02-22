@@ -1,10 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Archbrother</title>
+  <meta charset="UTF-8" />
+  <title>Archbrother – Hand-Carved Future</title>
+  <style>
+    /* 
+    ==========================================
+    1. GLOBAL RESET & BASIC STYLES
+    ==========================================
+    */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: sans-serif; /* We'll simulate a "hand-distressed" sans. */
+      color: #A9B0B3; /* Cool Gray from brand guide */
+      overflow-x: hidden;
+    }
+
+    /*
+    ==========================================
+    2. SITE-WIDE BACKGROUND: Watercolor Wash
+    ==========================================
+    */
+    body {
+      background: url('assets/watercolor-bg.png') no-repeat center center fixed;
+      background-size: cover;
+      background-blend-mode: multiply;
+      background-color: rgba(26, 42, 108, 0.9);
+    }
+
+    /*
+    ==========================================
+    3. HERO SECTION
+    ==========================================
+    */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* Change from 200vh to 100vh */
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden; /* Change from visible to hidden */
+    }
+
+    /* Fix the arch background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url('assets/arch-hero.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    /* Position the text closer to the arch */
+    .hero-content {
+      position: absolute;
+      top: calc(100vh - 125px);
+      width: 100%;
+      z-index: 3;
+    }
+
+    .animated-band-name {
+      width: 100%;
+      text-align: center;
+    }
+
+    .animated-band-name svg {
+      width: 800px;
+      max-width: 90%;
+      height: auto;
+    }
+
+    /* Update the animation to include the cycle */
+    .band-name-svg {
+      fill: none;
+      stroke: #C5A880;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: drawAndErase 80s linear infinite;
+    }
+
+    @keyframes drawAndErase {
+      /* Draw text (0-45%) */
+      0% {
+        stroke-dashoffset: 2000;
+      }
+      45% {
+        stroke-dashoffset: 0;
+      }
+      /* Wait 5s (45-51.25%) */
+      51.25% {
+        stroke-dashoffset: 0;
+      }
+      /* Erase text (51.25-96.25%) */
+      96.25% {
+        stroke-dashoffset: 2000;
+      }
+      /* Wait 3s and repeat (96.25-100%) */
+      100% {
+        stroke-dashoffset: 2000;
+      }
+    }
+
+    /*
+    ==========================================
+    5. FLOATING GLYPHS (OPTIONAL PLACEHOLDER)
+    ==========================================
+    */
+    .glyph {
+      position: absolute;
+      width: 40px; 
+      height: 40px;
+      background: url('https://via.placeholder.com/40') no-repeat center center;
+      background-size: contain;
+      opacity: 0.5;
+      animation: floatGlyph 6s ease-in-out infinite alternate;
+      z-index: 3; /* Above the arch image */
+    }
+
+    @keyframes floatGlyph {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(3deg); }
+      100% { transform: translateY(0) rotate(-3deg); }
+    }
+
+    .g1 { top: 20%; left: 15%; animation-delay: 0.5s; }
+    .g2 { top: 60%; left: 30%; animation-delay: 1s; }
+    .g3 { top: 40%; left: 70%; animation-delay: 1.5s; }
+    .g4 { top: 10%; left: 80%; animation-delay: 2s; }
+    .g5 { top: 80%; left: 10%; animation-delay: 2.5s; }
+
+    /*
+    ==========================================
+    6. RESPONSIVE TWEAKS
+    ==========================================
+    */
+    @media (max-width: 600px) {
+      .hero-content {
+        top: calc(100vh - 165px);
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Archbrother</h1>
-    <p>Coming soon</p>
+
+  <!-- =========================================
+       HERO SECTION
+       ========================================= -->
+  <section class="hero">
+    <!-- Floating glyphs (optional placeholders) -->
+    <div class="glyph g1"></div>
+    <div class="glyph g2"></div>
+    <div class="glyph g3"></div>
+    <div class="glyph g4"></div>
+    <div class="glyph g5"></div>
+
+    <!-- Hero content on top of the arch image -->
+    <div class="hero-content">
+      <div class="animated-band-name">
+        <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+          <text x="20" y="70" class="band-name-svg" 
+                style="font-size: 100px; font-family: 'Avenir Next', sans-serif;">
+            ARCHBROTHER
+          </text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
